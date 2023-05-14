@@ -1,18 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 public class MovingImage extends JFrame implements KeyListener {
-    private JLabel label1, label2;
+    private JLabel label1;
     private ImageIcon image1, image2;
-    private int x1, y1, x2, y2;
+    private int x1, y1;
     private boolean gameOver;
 
     public MovingImage() {
         super("Moving Image");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-
 
         ImageIcon originalImage1 = new ImageIcon("src/imagen.png");
         ImageIcon originalImage2 = new ImageIcon("src/imagen2.png");
@@ -21,62 +21,57 @@ public class MovingImage extends JFrame implements KeyListener {
         image1 = new ImageIcon(scaledImage1);
         image2 = new ImageIcon(scaledImage2);
 
-
         label1 = new JLabel(image1);
-        label2 = new JLabel(image2);
-
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.add(label1);
-        panel.add(label2);
         getContentPane().add(panel);
-
 
         x1 = 200;
         y1 = 200;
-        x2 = 0;
-        y2 = 0;
         label1.setBounds(x1, y1, 100, 100);
-        label2.setBounds(x2, y2, 50, 50);
-
 
         addKeyListener(this);
-
 
         gameOver = false;
         Thread t = new Thread(new Runnable() {
             public void run() {
                 while(!gameOver) {
-
-                    x2 += 10;
-                    label2.setBounds(x2, y2, 50, 50);
-                    panel.repaint();
-
-
-                    Rectangle r1 = new Rectangle(x1, y1, 100, 100);
-                    Rectangle r2 = new Rectangle(x2, y2, 50, 50);
-                    if (r1.intersects(r2)) {
-                        JOptionPane.showMessageDialog(null, "Fin del juego");
-                        gameOver = true;
-                    }
-
-
-                    try {
-                        Thread.sleep(50);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    Random random = new Random();
+                    for (int i = 0; i < 4; i++) {
+                        int x2 = 450;
+                        int y2 = random.nextInt(450) + 1;
+                        JLabel label2 = new JLabel(image2);
+                        panel.add(label2);
+                        label2.setBounds(x2, y2, 50, 50);
+                        while (x2 > 0) {
+                            x2 -= 10;
+                            label2.setBounds(x2, y2, 50, 50);
+                            Rectangle r1 = new Rectangle(x1, y1, 100, 100);
+                            Rectangle r2 = new Rectangle(x2, y2, 50, 50);
+                            if (r1.intersects(r2)) {
+                                int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                                if (option == JOptionPane.OK_OPTION) {
+                                    System.exit(0);
+                                }
+                            }
+                            try {
+                                Thread.sleep(50);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        panel.remove(label2);
                     }
                 }
             }
         });
         t.start();
 
-
         setSize(500, 500);
         setVisible(true);
     }
-
 
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
@@ -93,11 +88,9 @@ public class MovingImage extends JFrame implements KeyListener {
         getContentPane().repaint();
     }
 
-
     public void keyTyped(KeyEvent e) {}
     public void keyReleased(KeyEvent e) {}
 
-    
     public static void main(String[] args) {
         new MovingImage();
     }
