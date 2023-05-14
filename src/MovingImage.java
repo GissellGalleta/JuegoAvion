@@ -28,7 +28,7 @@ public class MovingImage extends JFrame implements KeyListener {
         panel.add(label1);
         getContentPane().add(panel);
 
-        x1 = 200;
+        x1 = 0;
         y1 = 200;
         label1.setBounds(x1, y1, 100, 100);
 
@@ -39,31 +39,47 @@ public class MovingImage extends JFrame implements KeyListener {
             public void run() {
                 while(!gameOver) {
                     Random random = new Random();
-                    for (int i = 0; i < 4; i++) {
-                        int x2 = 450;
-                        int y2 = random.nextInt(450) + 1;
-                        JLabel label2 = new JLabel(image2);
-                        panel.add(label2);
+                    int y2 = random.nextInt(450) + 1;
+                    int y3 = random.nextInt(450) + 1;
+                    while (y2 == y3) {
+                        y3 = random.nextInt(450) + 1;
+                    }
+                    int x2 = 450;
+                    int x3 = 450;
+                    while (x2 == x3) {
+                        x3 = random.nextInt(450) + 1;
+                    }
+                    JLabel label2 = new JLabel(image2);
+                    panel.add(label2);
+                    label2.setBounds(x2, y2, 50, 50);
+                    JLabel label3 = new JLabel(image2);
+                    panel.add(label3);
+                    label3.setBounds(x3, y3, 50, 50);
+                    int speed1 = random.nextInt(10) + 1;
+                    int speed2 = random.nextInt(10) + 1;
+                    int speed3 = random.nextInt(5) + 1;
+                    while (x2 > -50 && x3 > -50) {
+                        x2 -= speed1;
+                        x3 -= speed2;
                         label2.setBounds(x2, y2, 50, 50);
-                        while (x2 > 0) {
-                            x2 -= 10;
-                            label2.setBounds(x2, y2, 50, 50);
-                            Rectangle r1 = new Rectangle(x1, y1, 100, 100);
-                            Rectangle r2 = new Rectangle(x2, y2, 50, 50);
-                            if (r1.intersects(r2)) {
-                                int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-                                if (option == JOptionPane.OK_OPTION) {
-                                    System.exit(0);
-                                }
-                            }
-                            try {
-                                Thread.sleep(50);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                        label3.setBounds(x3, y3, 50, 50);
+                        Rectangle r1 = new Rectangle(x1, y1, 100, 100);
+                        Rectangle r2 = new Rectangle(x2, y2, 50, 50);
+                        Rectangle r3 = new Rectangle(x3, y3, 50, 50);
+                        if (r1.intersects(r2) || r1.intersects(r3)) {
+                            int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                            if (option == JOptionPane.OK_OPTION) {
+                                System.exit(0);
                             }
                         }
-                        panel.remove(label2);
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    panel.remove(label2);
+                    panel.remove(label3);
                 }
             }
         });
