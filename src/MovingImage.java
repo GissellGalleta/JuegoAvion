@@ -10,7 +10,7 @@ public class MovingImage extends JFrame implements KeyListener {
     private JLabel label1;
     private ImageIcon image1, image2, image3;
     private int x1, y1;
-    private int x5,y5;
+    private int x5, y5;
     private boolean gameOver;
     private List<JLabel> missiles;
     private boolean wait;
@@ -48,49 +48,50 @@ public class MovingImage extends JFrame implements KeyListener {
         addKeyListener(this);
 
         gameOver = false;
-       // missiles = new ArrayList<JLabel>();
+        // missiles = new ArrayList<JLabel>();
         wait = false;
-        myThread =new Thread(new Runnable() {
+
+        myThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                    while (!gameOver) {
-                        Random random = new Random();
-                        y5 = y1 + 30;
-                        x5 = x1 + 2;  // Misil 4: inicio desde el avion
-                        JLabel label5 = new JLabel(image3);
-                        panel.add(label5);
+                while (!gameOver) {
+                    Random random = new Random();
+                    y5 = y1 + 30;
+                    x5 = x1 + 2;  // Misil 4: inicio desde el avion
+                    JLabel label5 = new JLabel(image3);
+                    panel.add(label5);
+                    label5.setBounds(x5, y5, 50, 50);
+                    int speed4 = random.nextInt(10) + 1;
+                    while (x5 > -50) {
+                        x5 += speed4;
                         label5.setBounds(x5, y5, 50, 50);
-                        int speed4 = random.nextInt(10) + 1;
-                        while (x5 > -50) {
-                            x5 += speed4;
-                            label5.setBounds(x5, y5, 50, 50);
-                            Rectangle r5 = new Rectangle(x5, y5, 50, 50);
-                            try {
-                                Thread.sleep(50);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                        Rectangle r5 = new Rectangle(x5, y5, 50, 50);
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
+            }
         });
 
         Thread t = new Thread(new Runnable() {
             public void run() {
-                while(!gameOver) {
+                while (!gameOver) {
                     Random random = new Random();
                     int y2 = random.nextInt(450) + 1;
                     int y3 = random.nextInt(450) + 1;
                     int y4 = random.nextInt(450) + 1;
-                  //  int y5 = y1+30;
+                    //  int y5 = y1+30;
                     while (y2 == y3 || y2 == y4 || y3 == y4) {
                         y3 = random.nextInt(450) + 1;
                         y4 = random.nextInt(450) + 1;
                     }
-                    int x2 = 450;  // Misil 1: inicio desde el borde derecho
+                    int x2 = 450;
                     int x3 = 450;  // Misil 2: inicio desde el borde derecho
                     int x4 = 450;  // Misil 3: inicio desde el borde derecho
-                   // int x5 = x1+2;  // Misil 4: inicio desde el avion
+                    // int x5 = x1+2;  // Misil 4: inicio desde el avion
                     JLabel label2 = new JLabel(image2);
                     panel.add(label2);
                     label2.setBounds(x2, y2, 50, 50);
@@ -100,13 +101,13 @@ public class MovingImage extends JFrame implements KeyListener {
                     JLabel label4 = new JLabel(image2);
                     panel.add(label4);
                     label4.setBounds(x4, y4, 50, 50);
-                  //  JLabel label5 = new JLabel(image3);
-                  //  panel.add(label5);
-                  //  label5.setBounds(x5, y5, 50, 50);
+                    //  JLabel label5 = new JLabel(image3);
+                    //  panel.add(label5);
+                    //  label5.setBounds(x5, y5, 50, 50);
                     int speed1 = random.nextInt(10) + 1;
                     int speed2 = random.nextInt(10) + 1;
                     int speed3 = random.nextInt(10) + 1;
-                  //  int speed4 = random.nextInt(10) + 1;
+                    //  int speed4 = random.nextInt(10) + 1;
                     while (x2 > -50 || x3 > -50 || x4 > -50) {
                         if (x2 > -50) {
                             x2 -= speed1;
@@ -120,15 +121,15 @@ public class MovingImage extends JFrame implements KeyListener {
                             x4 -= speed3;
                             label4.setBounds(x4, y4, 50, 50);
                         }//if (x5>-50){
-                         //   x5 += speed4;
-                          //  label5.setBounds(x5,y5,50,50);
-                     //   }
+                        //   x5 += speed4;
+                        //  label5.setBounds(x5,y5,50,50);
+                        //   }
                         Rectangle r1 = new Rectangle(x1, y1, 100, 100);
                         Rectangle r2 = new Rectangle(x2, y2, 50, 50);
                         Rectangle r3 = new Rectangle(x3, y3, 50, 50);
                         Rectangle r4 = new Rectangle(x4, y4, 50, 50);
                         Rectangle r5 = new Rectangle(x5, y5, 50, 50);
-                         if (r5.intersects(r2)){
+                        if (r5.intersects(r2)) {
                             System.out.println("HOLAAsAAA");
                             panel.remove(label2);
                         } else if (r5.intersects(r3)) {
@@ -137,7 +138,7 @@ public class MovingImage extends JFrame implements KeyListener {
                         } else if (r5.intersects(r4)) {
                             panel.remove(label4);
                             System.out.println("SIIIIIIIIIU");
-                        }else if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
+                        } else if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
                             int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                             if (option == JOptionPane.OK_OPTION) {
                                 System.exit(0);
@@ -150,7 +151,7 @@ public class MovingImage extends JFrame implements KeyListener {
                         }
                         //System.out.println("uno"+r2);
                         System.out.println("dos"+r3);
-                       // System.out.println("tres"+r4);
+                        // System.out.println("tres"+r4);
                     }
                 }
             }
@@ -173,15 +174,42 @@ public class MovingImage extends JFrame implements KeyListener {
             x1 += 10;
         } else if (keyCode == KeyEvent.VK_SPACE) {
             //if (myThread==null){
-                myThread.start();
-           // }
+            myThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!gameOver) {
+                        Random random = new Random();
+                        y5 = y1 + 30;
+                        x5 = x1 + 2;  // Misil 4: inicio desde el avion
+                        JLabel label5 = new JLabel(image3);
+                        //panel.add(label5);
+                        label5.setBounds(x5, y5, 50, 50);
+                        int speed4 = random.nextInt(10) + 1;
+                        while (x5 > -50) {
+                            x5 += speed4;
+                            label5.setBounds(x5, y5, 50, 50);
+                            Rectangle r5 = new Rectangle(x5, y5, 50, 50);
+                            try {
+                                Thread.sleep(50);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            });
+            myThread.start();
+            // }
         }
         label1.setBounds(x1, y1, 100, 100);
         getContentPane().repaint();
     }
 
-    public void keyTyped(KeyEvent e) {}
-    public void keyReleased(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
 
     public static void main(String[] args) {
         new MovingImage();
