@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class MovingImage extends JFrame implements KeyListener {
@@ -46,6 +44,9 @@ public class MovingImage extends JFrame implements KeyListener {
         label1.setBounds(x1, y1, 100, 100);
         label5=new JLabel(image3);
         panel.add(label5);
+
+        addKeyListener(this);
+
         gameOver = false;
         Thread t = new Thread(new Runnable() {
             public void run() {
@@ -73,6 +74,7 @@ public class MovingImage extends JFrame implements KeyListener {
                     int speed1 = random.nextInt(10) + 1;
                     int speed2 = random.nextInt(10) + 1;
                     int speed3 = random.nextInt(10) + 1;
+
                     while (x2 > -50 || x3 > -50 || x4 > -50) {
                         if (x2 > -50) {
                             x2 -= speed1;
@@ -147,7 +149,7 @@ public class MovingImage extends JFrame implements KeyListener {
                         while (x5 > -50) {
                             x5 += speed4;
                             label5.setBounds(x5, y5, 50, 50);
-                           // Rectangle r5 = new Rectangle(x5, y5, 50, 50);
+                            Rectangle r5 = new Rectangle(x5, y5, 50, 50);
                             try {
                                 Thread.sleep(50);
                             } catch (InterruptedException e) {
