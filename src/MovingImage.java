@@ -13,8 +13,10 @@ public class MovingImage extends JFrame implements KeyListener {
     private int x5,y5;
     private boolean gameOver;
     private JLabel label5;
-    //private JLabel counterLabel;
+    private JLabel counterLabel3;
     private int counter;
+
+    private int counter2;
 
     public MovingImage() {
 
@@ -40,6 +42,17 @@ public class MovingImage extends JFrame implements KeyListener {
         getContentPane().add(panel);
         getContentPane().setBackground(Color.BLUE);
         panel.setBackground(Color.BLUE);
+
+        counterLabel3 = new JLabel("0");
+        counterLabel3.setForeground(Color.RED);
+        counterLabel3.setFont(new Font("Arial", Font.BOLD, 20));
+        counterLabel3.setBounds(420, 10, 100, 30);
+        panel.add(counterLabel3);
+        JLabel counterLabel4 = new JLabel("Puntos: ");
+        counterLabel4.setForeground(Color.RED);
+        counterLabel4.setFont(new Font("Arial", Font.BOLD, 20));
+        counterLabel4.setBounds(340, 10, 100, 30);
+        panel.add(counterLabel4);
 
         x1 = 50;
         y1 = 200;
@@ -119,11 +132,14 @@ public class MovingImage extends JFrame implements KeyListener {
                         }else if (r5.intersects(r2)){
                             System.out.println("HOLAAsAAA");
                             panel.remove(label2);
+                            incrementCounter();
                         } else if (r5.intersects(r3)) {
                             System.out.println("ADIOSSS");
                             panel.remove(label3);
+                            incrementCounter();
                         } else if (r5.intersects(r4)) {
                             panel.remove(label4);
+                            incrementCounter();
                             System.out.println("SIIIIIIIIIU");
                         }
                         try {
@@ -143,10 +159,10 @@ public class MovingImage extends JFrame implements KeyListener {
         setSize(500, 500);
         setVisible(true);
     }
-   // public void incrementCounter() {
-     //   int i= counter+ 1;
-       // counterLabel.setText(String.valueOf(i));
-    //}
+    public void incrementCounter() {
+        counter++;
+        counterLabel3.setText(String.valueOf(counter));
+    }
 
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
