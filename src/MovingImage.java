@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class MovingImage extends JFrame implements KeyListener {
 
+    int contadorIntersepciones=0;
     private Thread myThread;
     private JLabel label1;
     private ImageIcon image1, image2, image3;
@@ -12,6 +13,8 @@ public class MovingImage extends JFrame implements KeyListener {
     private int x5,y5;
     private boolean gameOver;
     private JLabel label5;
+    //private JLabel counterLabel;
+    private int counter;
 
     public MovingImage() {
 
@@ -44,6 +47,17 @@ public class MovingImage extends JFrame implements KeyListener {
         label1.setBounds(x1, y1, 100, 100);
         label5=new JLabel(image3);
         panel.add(label5);
+
+        Label counterLabel=new Label("0");
+        counterLabel.setForeground(Color.GREEN);
+        counterLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        counterLabel.setBounds(60, 10, 100, 30);
+        panel.add(counterLabel);
+        Label counterLabel2=new Label("Vida: ");
+        counterLabel2.setForeground(Color.GREEN);
+        counterLabel2.setFont(new Font("Arial", Font.BOLD, 20));
+        counterLabel2.setBounds(10, 10, 100, 30);
+        panel.add(counterLabel2);
 
         addKeyListener(this);
 
@@ -94,6 +108,10 @@ public class MovingImage extends JFrame implements KeyListener {
                         Rectangle r4 = new Rectangle(x4, y4, 50, 50);
                         Rectangle r5 = new Rectangle(x5, y5, 50, 50);
                         if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
+                            contadorIntersepciones ++;
+                            counterLabel.setText(String.valueOf(contadorIntersepciones));
+                            System.out.println(contadorIntersepciones);
+                        }if (contadorIntersepciones>=70){
                             int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                             if (option == JOptionPane.OK_OPTION) {
                                 System.exit(0);
@@ -125,6 +143,10 @@ public class MovingImage extends JFrame implements KeyListener {
         setSize(500, 500);
         setVisible(true);
     }
+   // public void incrementCounter() {
+     //   int i= counter+ 1;
+       // counterLabel.setText(String.valueOf(i));
+    //}
 
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
