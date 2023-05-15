@@ -14,6 +14,7 @@ public class MovingImage extends JFrame implements KeyListener {
     private boolean wait;
 
     public MovingImage() {
+
         super("Moving Image");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
@@ -34,6 +35,8 @@ public class MovingImage extends JFrame implements KeyListener {
         panel.setLayout(null);
         panel.add(label1);
         getContentPane().add(panel);
+        getContentPane().setBackground(Color.BLUE);
+        panel.setBackground(Color.BLUE);
 
         x1 = 50;
         y1 = 200;
@@ -96,21 +99,30 @@ public class MovingImage extends JFrame implements KeyListener {
                         Rectangle r1 = new Rectangle(x1, y1, 100, 100);
                         Rectangle r2 = new Rectangle(x2, y2, 50, 50);
                         Rectangle r3 = new Rectangle(x3, y3, 50, 50);
-                        Rectangle r4 = new Rectangle(x5, y5, 50, 50);
-                        if (r1.intersects(r2) & r1.intersects(r3)) {
+                        Rectangle r4 = new Rectangle(x4, y4, 50, 50);
+                        Rectangle r5 = new Rectangle(x5, y5, 50, 50);
+
+                         if (r5.intersects(r2)){
+                            panel.remove(label2);
+                        } else if (r5.intersects(r3)) {
+                            panel.remove(label3);
+                        } else if (r5.intersects(r4)) {
+                            panel.remove(label4);
+                        }
+                        if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
                             int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                             if (option == JOptionPane.OK_OPTION) {
                                 System.exit(0);
                             }
-                        } else if (r4.intersects(r2)|| r4.intersects(r3)){
-                            panel.remove(label2);
-                            panel.remove(label3);
                         }
                         try {
                             Thread.sleep(50);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        System.out.println("uno"+r2);
+                       // System.out.println("dos"+r3);
+                       // System.out.println("tres"+r4);
                     }
                     panel.remove(label2);
                     panel.remove(label3);
@@ -135,7 +147,6 @@ public class MovingImage extends JFrame implements KeyListener {
         } else if (keyCode == KeyEvent.VK_D) {
             x1 += 10;
         } else if (keyCode == KeyEvent.VK_SPACE) {
-           // th.start();
 
         }
         label1.setBounds(x1, y1, 100, 100);
