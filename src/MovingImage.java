@@ -93,7 +93,12 @@ public class MovingImage extends JFrame implements KeyListener {
                         Rectangle r3 = new Rectangle(x3, y3, 50, 50);
                         Rectangle r4 = new Rectangle(x4, y4, 50, 50);
                         Rectangle r5 = new Rectangle(x5, y5, 50, 50);
-                         if (r5.intersects(r2)){
+                        if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
+                            int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                            if (option == JOptionPane.OK_OPTION) {
+                                System.exit(0);
+                            }
+                        }else if (r5.intersects(r2)){
                             System.out.println("HOLAAsAAA");
                             panel.remove(label2);
                         } else if (r5.intersects(r3)) {
@@ -102,11 +107,6 @@ public class MovingImage extends JFrame implements KeyListener {
                         } else if (r5.intersects(r4)) {
                             panel.remove(label4);
                             System.out.println("SIIIIIIIIIU");
-                        }else if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
-                            int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-                            if (option == JOptionPane.OK_OPTION) {
-                                System.exit(0);
-                            }
                         }
                         try {
                             Thread.sleep(50);
