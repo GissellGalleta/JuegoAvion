@@ -124,9 +124,6 @@ public class MovingImage extends JFrame implements KeyListener {
                        // System.out.println("dos"+r3);
                        // System.out.println("tres"+r4);
                     }
-                    panel.remove(label2);
-                    panel.remove(label3);
-                    panel.remove(label5);
                 }
             }
         });
@@ -147,7 +144,13 @@ public class MovingImage extends JFrame implements KeyListener {
         } else if (keyCode == KeyEvent.VK_D) {
             x1 += 10;
         } else if (keyCode == KeyEvent.VK_SPACE) {
-
+            Thread th=new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    int y5 = y1+30;
+                    int x5 = x1;
+                }
+            });
         }
         label1.setBounds(x1, y1, 100, 100);
         getContentPane().repaint();
