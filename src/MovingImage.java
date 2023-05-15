@@ -44,12 +44,12 @@ public class MovingImage extends JFrame implements KeyListener {
         panel.setBackground(Color.BLUE);
 
         counterLabel3 = new JLabel("0");
-        counterLabel3.setForeground(Color.RED);
+        counterLabel3.setForeground(Color.GREEN);
         counterLabel3.setFont(new Font("Arial", Font.BOLD, 20));
         counterLabel3.setBounds(420, 10, 100, 30);
         panel.add(counterLabel3);
         JLabel counterLabel4 = new JLabel("Puntos: ");
-        counterLabel4.setForeground(Color.RED);
+        counterLabel4.setForeground(Color.GREEN);
         counterLabel4.setFont(new Font("Arial", Font.BOLD, 20));
         counterLabel4.setBounds(340, 10, 100, 30);
         panel.add(counterLabel4);
@@ -62,12 +62,12 @@ public class MovingImage extends JFrame implements KeyListener {
         panel.add(label5);
 
         Label counterLabel=new Label("0");
-        counterLabel.setForeground(Color.GREEN);
+        counterLabel.setForeground(Color.RED);
         counterLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        counterLabel.setBounds(60, 10, 100, 30);
+        counterLabel.setBounds(75, 10, 100, 30);
         panel.add(counterLabel);
-        Label counterLabel2=new Label("Vida: ");
-        counterLabel2.setForeground(Color.GREEN);
+        Label counterLabel2=new Label("Daño: ");
+        counterLabel2.setForeground(Color.RED);
         counterLabel2.setFont(new Font("Arial", Font.BOLD, 20));
         counterLabel2.setBounds(10, 10, 100, 30);
         panel.add(counterLabel2);
@@ -149,7 +149,7 @@ public class MovingImage extends JFrame implements KeyListener {
                         }
                         //System.out.println("uno"+r2);
                         System.out.println("dos"+r3);
-                       // System.out.println("tres"+r4);
+                        // System.out.println("tres"+r4);
                     }
                 }
             }
