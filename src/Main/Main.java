@@ -12,6 +12,6 @@ public class Main {
         BalaEnemiga bE=new BalaEnemiga(v1,b1);
         b1.start();
         bE.start();
-        ControladorJuego c1=new ControladorJuego(v1);
+        ControladorJuego c1=new ControladorJuego();
     }
 }

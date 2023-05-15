@@ -9,10 +9,12 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class ControladorJuego implements KeyListener {
-    private final VentanaJuego vistJuego;
-    public ControladorJuego(VentanaJuego vistJuego){
-        this.vistJuego=vistJuego;
+    VentanaJuego vistJuego;
+
+    public ControladorJuego(){
+       // this.vistJuego=vistJuego;
     }
+
     @Override
     public void keyTyped(KeyEvent e) {}
 

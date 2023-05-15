@@ -11,7 +11,7 @@ public class BalaNave extends Thread{
     int x5,y5;
     private ImageIcon  image3;
     private JLabel label5;
-    private final VentanaJuego vistJuego;
+     VentanaJuego vistJuego;
     public BalaNave(VentanaJuego vistJuego){
         this.vistJuego=vistJuego;
         ImageIcon originalImage3 = new ImageIcon("src/imagen3.png");

@@ -41,7 +41,8 @@ public class VentanaJuego extends JFrame {
 
         label1.setBounds(x1, y1, 100, 100);
 
-        panel.addKeyListener(control);
+        control = new ControladorJuego();
+        addKeyListener(control);
 
         counterLabel = new Label("0");
         counterLabel.setForeground(Color.GREEN);
