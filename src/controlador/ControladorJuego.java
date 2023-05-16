@@ -1,5 +1,6 @@
 package controlador;
 
+import modelo.BalaEnemiga;
 import modelo.BalaNave;
 import vista.VentanaJuego;
 
@@ -9,10 +10,12 @@ import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class ControladorJuego implements KeyListener {
-    VentanaJuego vistJuego;
+    private final VentanaJuego vistJuego;
+    public BalaNave b1;
 
-    public ControladorJuego(){
-       // this.vistJuego=vistJuego;
+
+    public ControladorJuego(VentanaJuego vistJuego){
+        this.vistJuego=vistJuego;
     }
 
     @Override
@@ -31,13 +34,19 @@ public class ControladorJuego implements KeyListener {
         } else if (keyCode == KeyEvent.VK_D) {
             vistJuego.x1 += 10;
         } else if (keyCode == KeyEvent.VK_SPACE) {
-            //BalaNave b1=new BalaNave(v1);
-            //b1.start();
+            b1=new BalaNave(vistJuego);
+            b1.start();
 
         }
         vistJuego.label1.setBounds(vistJuego.x1, vistJuego.y1, 100, 100);
         vistJuego.getContentPane().repaint();
     }
+    public void balaEne(){
+        BalaEnemiga bE = new BalaEnemiga(vistJuego,b1);
+        bE.start();
+    }
+
+
 
 
     @Override

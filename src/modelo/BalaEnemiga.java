@@ -9,8 +9,10 @@ import java.util.Random;
 public class BalaEnemiga extends Thread{
     private ImageIcon image2;
     int contadorIntersepciones=0;
+    int contadorVidas=0;
     private final VentanaJuego vistJuego;
     private final BalaNave coor;
+
     public BalaEnemiga(VentanaJuego vistJuego,BalaNave coor){
         this.vistJuego=vistJuego;
         this.coor=coor;
@@ -62,26 +64,32 @@ public class BalaEnemiga extends Thread{
                     Rectangle r2 = new Rectangle(x2, y2, 50, 50);
                     Rectangle r3 = new Rectangle(x3, y3, 50, 50);
                     Rectangle r4 = new Rectangle(x4, y4, 50, 50);
-                    Rectangle r5 = new Rectangle(coor.x5, coor.y5, 50, 50);
+                   // Rectangle r5 = new Rectangle(coor.x5, coor.y5, 50, 50);
                     if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
                         contadorIntersepciones ++;
                         vistJuego.counterLabel.setText(String.valueOf(contadorIntersepciones));
                         System.out.println(contadorIntersepciones);
-                    }if (contadorIntersepciones>=70){
+                    }if (contadorIntersepciones>=100){
                         int option = JOptionPane.showOptionDialog(null, "Fin del juego", "Juego terminado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
                         if (option == JOptionPane.OK_OPTION) {
                             System.exit(0);
                         }
-                    }else if (r5.intersects(r2)){
+                    }/*else if (r5.intersects(r2)){
                         System.out.println("HOLAAsAAA");
                         vistJuego.panel.remove(label2);
+                        contadorVidas++;
+                        vistJuego.counterLabel3.setText(String.valueOf(contadorVidas));
                     } else if (r5.intersects(r3)) {
                         System.out.println("ADIOSSS");
                         vistJuego.panel.remove(label3);
+                        contadorVidas++;
+                        vistJuego.counterLabel3.setText(String.valueOf(contadorVidas));
                     } else if (r5.intersects(r4)) {
                         vistJuego.panel.remove(label4);
+                        contadorVidas++;
+                        vistJuego.counterLabel3.setText(String.valueOf(contadorVidas));
                         System.out.println("SIIIIIIIIIU");
-                    }
+                    }*/
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
