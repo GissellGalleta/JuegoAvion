@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class BalaNave extends Thread{
 
-    int x5,y5;
+    public int x5,y5;
     private ImageIcon  image3;
     private JLabel label5;
      VentanaJuego vistJuego;
