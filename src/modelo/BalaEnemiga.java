@@ -22,6 +22,9 @@ public class BalaEnemiga extends Thread{
     }
 
         public void run() {
+            boolean chocoR2 = false;
+            boolean chocoR3 = false;
+            boolean chocoR4 = false;
             while(!vistJuego.gameOver) {
                 Random random = new Random();
                 int y2 = random.nextInt(450) + 1;
@@ -64,7 +67,7 @@ public class BalaEnemiga extends Thread{
                     Rectangle r2 = new Rectangle(x2, y2, 50, 50);
                     Rectangle r3 = new Rectangle(x3, y3, 50, 50);
                     Rectangle r4 = new Rectangle(x4, y4, 50, 50);
-                   // Rectangle r5 = new Rectangle(coor.x5, coor.y5, 50, 50);
+                    Rectangle r5 = new Rectangle(Variables.x5, Variables.y5, 50, 50);
                     if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
                         contadorIntersepciones ++;
                         vistJuego.counterLabel.setText(String.valueOf(contadorIntersepciones));
@@ -74,10 +77,11 @@ public class BalaEnemiga extends Thread{
                         if (option == JOptionPane.OK_OPTION) {
                             System.exit(0);
                         }
-                    }/*else if (r5.intersects(r2)){
+                    }else if (r5.intersects(r2)){
                         System.out.println("HOLAAsAAA");
                         vistJuego.panel.remove(label2);
                         contadorVidas++;
+
                         vistJuego.counterLabel3.setText(String.valueOf(contadorVidas));
                     } else if (r5.intersects(r3)) {
                         System.out.println("ADIOSSS");
@@ -89,7 +93,7 @@ public class BalaEnemiga extends Thread{
                         contadorVidas++;
                         vistJuego.counterLabel3.setText(String.valueOf(contadorVidas));
                         System.out.println("SIIIIIIIIIU");
-                    }*/
+                    }
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {

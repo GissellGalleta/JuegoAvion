@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -77,12 +78,17 @@ public class MovingImage extends JFrame implements KeyListener {
                     int x3 = 450;  // Misil 2: inicio desde el borde derecho
                     int x4 = 450;  // Misil 3: inicio desde el borde derecho
                     JLabel label2 = new JLabel(image2);
+                    Border border = BorderFactory.createLineBorder(Color.red, 5);
+                    label2.setBorder(border);
+                    //label2.setBorder();
                     panel.add(label2);
                     label2.setBounds(x2, y2, 50, 50);
                     JLabel label3 = new JLabel(image2);
+                    label3.setBorder(border);
                     panel.add(label3);
                     label3.setBounds(x3, y3, 50, 50);
                     JLabel label4 = new JLabel(image2);
+                    label4.setBorder(border);
                     panel.add(label4);
                     label4.setBounds(x4, y4, 50, 50);
                     int speed1 = random.nextInt(10) + 1;
@@ -109,6 +115,7 @@ public class MovingImage extends JFrame implements KeyListener {
                         Rectangle r5 = new Rectangle(x5, y5, 50, 50);
                         if (r1.intersects(r2) || r1.intersects(r3) || r1.intersects(r4)) {
                             contadorIntersepciones ++;
+                            System.out.println("MENSAJE");
                             counterLabel.setText(String.valueOf(contadorIntersepciones));
                             System.out.println(contadorIntersepciones);
                         }if (contadorIntersepciones>=70){
@@ -132,7 +139,7 @@ public class MovingImage extends JFrame implements KeyListener {
                             e.printStackTrace();
                         }
                         //System.out.println("uno"+r2);
-                        System.out.println("dos"+r3);
+                       // System.out.println("dos"+r3);
                        // System.out.println("tres"+r4);
                     }
                 }

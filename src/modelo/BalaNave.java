@@ -24,14 +24,14 @@ public class BalaNave extends Thread{
         @Override
         public void run() {
                 Random random = new Random();
-                y5 = vistJuego.y1 + 30;
-                x5 = vistJuego.x1 + 2;  // Misil 4: inicio desde el avion
-                label5.setBounds(x5, y5, 50, 50);
+                Variables.y5 = vistJuego.y1 + 30;
+                Variables.x5 = vistJuego.x1 + 2;  // Misil 4: inicio desde el avion
+                label5.setBounds(Variables.x5, Variables.y5, 50, 50);
                 int speed4 = random.nextInt(10) + 1;
-                while (x5 > -50) {
-                    x5 += speed4;
-                    label5.setBounds(x5, y5, 50, 50);
-                    Rectangle r5 = new Rectangle(x5, y5, 50, 50);
+                while (Variables.x5 > -50) {
+                    Variables.x5 += speed4;
+                    label5.setBounds(Variables.x5, Variables.y5, 50, 50);
+                    Rectangle r5 = new Rectangle(Variables.x5, Variables.y5, 50, 50);
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
